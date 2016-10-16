@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>react-component</Title>
+      <Author>jxsh08</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>service</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ServiceName</ID>
+          <ToolTip>ServiceName</ToolTip>
+          <Default>ServiceName</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="javascript" Delimiter="$"><![CDATA[/*!
+ * jixiu-h5 Javascript Library
+ * weiyining - v1.0.0 (2016)
+ * https://www.jixiuapp.com/ | Released under MIT license
+ */
+'use strict';
+import BasicService from './basic';
+
+export default class $ServiceName$ extends BasicService
+{
+    constructor()
+    {
+        super();
+        this.Rank = this.Get;
+    }
+
+    Get()
+    {
+        return this.call({ url: 'api/Personal/v200/',method: 'GET'})
+            .then(r=>{
+                window.store.dispatch({type:"$ServiceName$_Data",data:r});
+                return r;
+            });
+    }
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

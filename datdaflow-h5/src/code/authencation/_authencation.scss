@@ -1,0 +1,67 @@
+﻿.ForgetPassword{}
+.Login{
+       height: 100%;
+       position: fixed;     
+       width:100%;
+       background-size:cover;
+       .list{
+           &:before{
+               content:"";
+               width: 0;
+               height: 0;
+               border-left: 5px solid transparent;
+               border-right: 5px solid transparent;
+               border-bottom: 10px solid #fff;
+               position:absolute;
+               top: -9px;
+               left: 50%;
+               transform: translateX(-50%);
+               z-index:10;
+           }
+           .item{
+               .forget{
+                   margin-right:3rem;
+                   color:#dcdcdc;
+               }
+           }
+       }
+       .userpic{
+           width:25%;
+           padding-top:25%;
+           margin:2rem auto 1.5rem;
+           background-size: cover;
+       }
+        fieldset{
+            padding:10px;
+            margin:10px;
+            color:#dcdcdc; 
+            border-top:#dcdcdc solid 1px;
+            border-bottom: none;
+            border-left: none;
+            border-right: none;
+            text-align: center;
+        } 
+        legend{
+            color:#dcdcdc;
+            border:none;
+            width:auto;
+            padding:0 1rem;
+            font-size:14px;
+        } 
+        .login-bot{
+            text-align:center;
+            a{
+                color:#dcdcdc;
+            }
+        }
+}
+.Register{}
+.ReigsterEnd{}
+.ResetPassword{}
+
+
+
+button[disabled], html input[disabled]{
+    background-color:#a0a0a0 !important;
+}
+

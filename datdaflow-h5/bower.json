@@ -1,0 +1,6 @@
+{
+  "name": "dataflow-h5",
+  "dependencies": {
+    "ionic": "1.3.1"
+  }
+}

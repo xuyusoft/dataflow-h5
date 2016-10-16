@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>react-component</Title>
+      <Author>jxsh08</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>component</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>ComponentName</ID>
+          <ToolTip>ComponentName</ToolTip>
+          <Default>ComponentName</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="javascript" Delimiter="$"><![CDATA[/*!
+ * jixiu-h5 Javascript Library
+ * weiyining - v1.0.0 (2016)
+ * https://www.jixiuapp.com/ | Released under MIT license
+ */
+
+import React,{Component,PropTypes} from 'react';
+import {Link, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+
+/**
+ * 组件说明
+ * @class $ComponentName$
+ * @author 作者
+ * @version 1.0
+ */
+export default class $ComponentName$ extends Component {
+
+   // #region Default Events
+    /**
+    * 构造函数
+    * @constructor
+    */
+    constructor() {
+        super();
+
+        // 组件状态集合
+        this.state={};
+
+        // 绑定方法
+        this.ToDoSomething = this.ToDoSomething.bind(this);
+
+        // TODO 初始化的一些操作
+    }
+
+    /**
+    * 插入DOM之前
+    * @event 
+    */
+    componentWillMount(){
+
+    }
+
+    /**
+    * 插入DOM之后
+    * @event 
+    */
+    componentDidMount(){
+
+    }
+
+    /**
+    * 组件更新前执行
+    * @event 
+    */
+    shouldComponentUpdate(){
+     //return true/false
+    }
+
+    /**
+    * 重新渲染之前
+    * @event 
+    */
+    componentWillUpdate(nextProps, nextState){
+
+    }
+    
+    /**
+    * 重新渲染之后
+    * @event 
+    */
+    componentDidUpdate(prevProps, prevState){
+
+    }
+    
+    /**
+    * 移出DOM之前
+    * @event 
+    */
+    componentWillUnmount(){
+
+    }
+
+    /**
+     * 渲染组件
+     * @event
+     * @return {Element} html元素
+     */
+    render() {
+        return (
+            <div className="$ComponentName$">
+
+            </div>
+            );
+    }
+    // #endregion
+
+    /**
+    * 方法 Demo
+    * 需要同时在constructor事件中做绑定
+    * @function
+    */
+    ToDoSomething(){
+        // TO DO Something here
+    }
+
+}
+
+/**
+* 属性集
+* @property
+*/
+$ComponentName$.propTypes = { 
+    TopMenu: PropTypes.object,
+    Menu: PropTypes.object
+};
+$ComponentName$.defaultProps = {  
+    TopMenu:{
+        show:true,
+        title: <FormattedMessage id="$ComponentName$" />,
+        left:[{to:'home'}],
+        right:[]
+    },
+    Menu:{show:true}
+};]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
