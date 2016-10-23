@@ -11,15 +11,14 @@ export default class BasicService
 {
     constructor()
     {
-        this.endpoint = 'http://jixiuapp-staging.cloudapp.net/';
+        this.endpoint = 'http://localhost:9130/api/';
     }
 
     call(_options)
     {
         var param = new URLSearchParams();
-        param.set('appKey', Cookies.get('appKey'));
         param.set('accessToken', Cookies.get('accessToken'));
-        
+
         if (_options.noToken){ param.delete('accessToken'); }
 
         if (_.isObject(_options.param))
@@ -35,7 +34,7 @@ export default class BasicService
         var headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
-                
+
         var options =
             {
                 method: 'GET',
@@ -45,15 +44,22 @@ export default class BasicService
             };
 
         _.merge(options, _options);
-            
-        var url = this.endpoint + _options.url+"?"+param.toString();
+
+        var url = this.endpoint + _options.url
+
+        let paramStr = param.toString();
+        if(paramStr!='')
+        {
+            url+="?"+paramStr;
+        }
+
         delete options.url;
 
         return fetch(url, options)
-            .then(r=> { 
+            .then(r=> {
                 if(r.ok)
                 {
-                    return r.json(); 
+                    return r.json();
                 }
                 else{
                     console.error(r)
@@ -69,23 +75,9 @@ export default class BasicService
 
     setup(app)
     {
-        let device = Cookies.get('device');
-
-        if (!device) 
-        {
-            device = 'KgXkUdEPo50KZ7d'; 
-            Cookies.set('device', device, { expires: 365 });
-        }
-        
-        let url  = `api/Core/v200/App/WebInit?app=${app}&device=${device}`;
-        
-        fetch(this.endpoint+url).then(r=>
-        {
-            return r.json().then(x=>
-            {
-                Cookies.set('appKey', x.AppKey);
-                Cookies.set('accessToken', x.AccessToken);
-            })
+        let url  = `Business/Get?key=${app}`;
+        fetch(this.endpoint+url).then(r=> {
+            return r.json()
         })
     }
 }

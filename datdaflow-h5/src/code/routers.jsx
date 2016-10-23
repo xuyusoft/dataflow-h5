@@ -18,7 +18,7 @@ import Recharge from './recharge/recharge';
 // 查询
 import Query from './query/query';
 // 认证
-import Auth from './auth/auth';
+import Identity from './identity/identity';
 // 404错误页
 import NotFound from './notfound/notfound';
 import Reducers from './reducers'
@@ -36,7 +36,7 @@ const routers = (
                 <Route path="news" component={News} />
                 <Route path="recharge" component={Recharge} />
                 <Route path="query" component={Query} />
-                <Route path="auth" component={Auth} />
+                <Route path="identity" component={Identity} />
                 {PersonalRouter}
                 <Route path="*" component={NotFound} />
             </Route>

@@ -60,9 +60,9 @@ export default class Menu extends Component {
                             <FormattedMessage id="topmenu_query" />
                           </Link>
 
-                          <Link className="tab-item" to={"/"+app+"/auth"} activeClassName="active">
+                          <Link className="tab-item" to={"/"+app+"/identity"} activeClassName="active">
                             <i className='icon ion-ios-bookmarks-outline'></i>
-                            <FormattedMessage id="topmenu_auth" />
+                            <FormattedMessage id="topmenu_identity" />
                           </Link>
 
                          <Link className="tab-item" to={"/"+app+"/personal"} activeClassName="active">

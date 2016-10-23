@@ -7,6 +7,7 @@
 import React,{Component,PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import RechargeService from '../service/recharge';
 
 /**
  * 组件说明
@@ -14,6 +15,7 @@ import { FormattedMessage } from 'react-intl';
  * @author seven
  * @version 1.0
  */
+@connect(x =>{ return { data : x.Recharge } })
 export default class Recharge extends Component {
 
     // #region Default Events
@@ -21,17 +23,50 @@ export default class Recharge extends Component {
     * 构造函数
     * @constructor
     */
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        this.Buy=::this.Buy;
+        this.Selected =::this.Selected;
+
+        this.api = new RechargeService();
+        let app = parseInt(props.params.app);
+            this.api.Get(isNaN(app)?1:app);
+
     }
 
-    /**
-    * 插入DOM之前
-    * @event
-    */
-    componentWillMount(){
-
+    Selected(data)
+    {
+        this.selected = data;
     }
+
+
+    Buy()
+    {
+        let cardNo = this.refs.RechargeCardNoInput.refs.CardNo.value;
+
+        let data = {
+            uid:parseInt(this.props.params.app),
+            FlowCardNo:cardNo,
+            data:this.selected
+        };
+
+        if(isNaN(data.uid)){data.uid=1;}
+
+        this.api.CreateOrder(data).then(r=>{
+            if(r.code!=0)
+            {
+                alert(r.msg);
+            }
+            else{
+                let child = document.createElement('div');
+                child.innerHTML = r.msg;
+                document.body.appendChild(child);
+                document.forms['alipaysubmit'].submit();
+            }
+        });
+    }
+
 
     /**
      * 渲染组件
@@ -40,25 +75,35 @@ export default class Recharge extends Component {
      */
     render() {
 
-        let packages =  null;
+        let data = this.props.data;
 
-        //<ion-radio ng-repeat="x in Packages" ref="Entity.data">
-        //                    <font className="assertive">￥{{x.Amount}}</font> = {{x.Description}}
-        //                </ion-radio>
+        if(!data){return null;}
+
+        let packages =
+           _.map(data.msg,(a,b)=>{
+               return (
+               <label key={b} className="item item-radio ng-valid ng-not-empty" onClick={()=>{this.Selected(a.Data)}}>
+                 <input type="radio" name="radio-group" className="ng-not-empty ng-dirty ng-touched ng-valid-parse" />
+                    <div className="radio-content">
+                        <div className="item-content disable-pointer-events">
+                                <font className="assertive">￥{a.Amount}</font>
+                                <span> = {a.Description}</span>
+                        </div>
+                        <i className="radio-icon disable-pointer-events icon ion-checkmark"></i>
+                    </div>
+            </label>)
+
+            });
 
         return (
             <div className="Recharge">
                 <div className="list">
-                    <label className="item item-input item-stacked-label">
-                        <span className="input-label">流量卡号</span>
-                        <input type="text" ref="Entity.FlowCardNo" placeholder="请输入流量卡号/手机号" />
-                    </label>
-                    <ion-list>
+                    <RechargeCardNoInput ref='RechargeCardNoInput' />
+                     <div className="list">
                     {packages}
-                    </ion-list>
-                    <br />
-                    <button className="button button-block button-assertive">
-                        确认充值
+                    </div>
+                    <button className="button button-block button-assertive" onClick={this.Buy}>
+                        <FormattedMessage id="buttons_recharge" />
                     </button>
                 </div>
             </div>
@@ -80,10 +125,27 @@ Recharge.defaultProps = {
         show:true,
         title: <FormattedMessage id="topmenu_recharge" />,
     left:[{to:'^'}],
-        right:[]
-    },
-    Menu:
-        {
-            show:true
-        }
+    right:[]
+},
+Menu:
+{
+    show:true
+}
 };
+
+
+export class RechargeCardNoInput extends Component
+{
+    render()
+    {
+        return (<label className="item item-input item-stacked-label">
+                      <span className="input-label"><FormattedMessage id="recharge_cardNo" /></span>
+                      <input type="text" ref="CardNo" placeholder={this.context.intl.formatMessage({id:"recharge_cardNo_placeholder"})} />
+                  </label>);
+    }
+}
+
+RechargeCardNoInput.contextTypes =
+    {
+        intl:PropTypes.object.isRequired
+    }

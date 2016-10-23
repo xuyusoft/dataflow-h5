@@ -31,6 +31,7 @@
     "less": "2.7.1",
     "less-loader": "2.2.3",
     "lodash": "4.16.4",
+    "mockjs": "^1.0.1-beta3",
     "node-sass": "3.10.1",
     "react-hot-loader": "3.0.0-beta.5",
     "react-redux": "^4.4.5",

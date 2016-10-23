@@ -38,7 +38,7 @@ if(typeof window !== 'undefined')
  * @author seven
  * @version 1.0
  */
-@connect(state =>{ return { Language: state.Language } })
+@connect(state =>{ return { Language: state.Language,intl:{} } })
 export default class Share extends Component {
 
     // #region Default Events
@@ -110,4 +110,3 @@ renderMessage() {
         }
     }
 }
-

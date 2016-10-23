@@ -72,6 +72,7 @@
     <Content Include="package.json" />
     <Content Include="src\code\app.jsx" />
     <Content Include="src\code\routers.jsx" />
+    <Content Include="src\code\service\identity.js" />
     <Content Include="src\_app.scss" />
     <Content Include="src\code\authencation\forget-password.jsx" />
     <Content Include="src\code\authencation\login.jsx" />
@@ -87,12 +88,12 @@
     <Content Include="src\code\common\_topMenu.scss" />
     <Content Include="src\code\common\_variables.scss" />
     <Content Include="src\code\query\query.jsx" />
-    <Content Include="src\code\query\_game.scss" />
+    <Content Include="src\code\query\_query.scss" />
     <Content Include="src\code\news\news.jsx" />
     <Content Include="src\code\notfound\notfound.jsx" />
     <Content Include="src\code\personal\personal.jsx" />
     <Content Include="src\code\personal\routers.jsx" />
-    <Content Include="src\code\auth\auth.jsx" />
+    <Content Include="src\code\identity\identity.jsx" />
     <Content Include="src\code\share\share.jsx" />
     <Content Include="src\code\share\_share.scss" />
     <Content Include="src\code\recharge\recharge.jsx" />
@@ -115,8 +116,8 @@
     <Content Include="src\code\reducers.js" />
     <Content Include="src\code\service\auth.js" />
     <Content Include="src\code\service\basic.js" />
-    <Content Include="src\code\service\group.js" />
-    <Content Include="src\code\service\news.js" />
+    <Content Include="src\code\service\recharge.js" />
+    <Content Include="src\code\service\query.js" />
     <Content Include="src\code\service\user.js" />
     <Content Include="Web.config" />
     <Content Include="webpack.config.js" />
